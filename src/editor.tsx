@@ -1,7 +1,7 @@
 import React from 'react';
 import { createEditor, Node } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
-import memoizeOne from 'memoize-one'
+import memoizeOne from 'memoize-one';
 
 export default class Editor extends React.PureComponent {
   state: { value: Node[] } = {
