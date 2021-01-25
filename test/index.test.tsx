@@ -10,3 +10,8 @@ test('Editor default', () => {
   render(<Editor />);
   expect(screen.queryByText(DEFAULT_PLACEHOLDER)).toBeTruthy();
 });
+test('Editor with placeholder', () => {
+  const p = 'ppp';
+  render(<Editor placeholder={p} />);
+  expect(screen.queryByText(p)).toBeTruthy();
+});
