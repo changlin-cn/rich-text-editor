@@ -3,26 +3,39 @@ import { createEditor, Node } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 import memoizeOne from 'memoize-one';
 
-export default class Editor extends React.PureComponent {
-  state: { value: Node[] } = {
+export type editorProps = {
+  placeholder?: string;
+};
+type editorStates = { value: Node[] };
+
+export class Editor extends React.PureComponent<editorProps, editorStates> {
+  state = {
     value: [
       {
         type: 'paragraph',
-        children: [{ text: 'A line of text in a paragraph.' }],
+        children: [{ text: '' }],
       },
     ],
   };
 
-  render(): React.ReactNode {
-    const editor = this.createEditor();
+  render() {
+    return <>{this.renderEditor()}</>;
+  }
+
+  renderEditor = () => {
     const { value } = this.state;
+    const { placeholder } = this.props;
 
     return (
-      <Slate editor={editor} value={value} onChange={this.handleChange}>
-        <Editable />
+      <Slate editor={this.getEditor()} value={value} onChange={this.handleChange}>
+        <Editable placeholder={placeholder} />
       </Slate>
     );
-  }
+  };
+  getEditor = () => this.createEditor();
   createEditor = memoizeOne(() => withReact(createEditor()));
-  handleChange = (newValue: Node[]): void => this.setState(newValue);
+  handleChange = (newValue: Node[]): void => {
+    // console.log(newValue);
+    this.setState({ value: newValue });
+  };
 }

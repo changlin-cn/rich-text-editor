@@ -1,3 +1,3 @@
-import Editor from './editor';
+export * from './editor';
 
-export { Editor };
+export * from './consts/node-types';
