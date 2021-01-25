@@ -1,16 +1,12 @@
 import React from 'react';
-import { cleanup, fireEvent, render } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 
 import { Editor } from '../src/index';
+import { DEFAULT_PLACEHOLDER } from '../src/consts/placeholder';
 
 afterEach(cleanup);
 
-it('CheckboxWithLabel changes the text after click', () => {
-  const { queryByLabelText, getByLabelText } = render(<Editor />);
-
-  expect(queryByLabelText(/off/i)).toBeTruthy();
-
-  fireEvent.click(getByLabelText(/off/i));
-
-  expect(queryByLabelText(/on/i)).toBeTruthy();
+test('Editor default', () => {
+  render(<Editor />);
+  expect(screen.queryByText(DEFAULT_PLACEHOLDER)).toBeTruthy();
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import { createEditor, Node } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 import memoizeOne from 'memoize-one';
+import { DEFAULT_PLACEHOLDER } from './consts/placeholder';
 
 export type editorProps = {
   placeholder?: string;
@@ -9,6 +10,9 @@ export type editorProps = {
 type editorStates = { value: Node[] };
 
 export class Editor extends React.PureComponent<editorProps, editorStates> {
+  static defaultProps = {
+    placeholder: DEFAULT_PLACEHOLDER,
+  };
   state = {
     value: [
       {
@@ -28,7 +32,7 @@ export class Editor extends React.PureComponent<editorProps, editorStates> {
 
     return (
       <Slate editor={this.getEditor()} value={value} onChange={this.handleChange}>
-        <Editable placeholder={placeholder} />
+        <Editable placeholder={placeholder} className="slate-rich-text-editor" />
       </Slate>
     );
   };
