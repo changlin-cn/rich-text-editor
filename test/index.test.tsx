@@ -15,3 +15,12 @@ test('Editor with placeholder', () => {
   render(<Editor placeholder={p} />);
   expect(screen.queryByText(p)).toBeTruthy();
 });
+
+// fireEvent 无selectionChange 事件类型 无法测试onChange
+// test('Editor:onChange', () => {
+//   const fn = jest.fn();
+//   render(<Editor onChange={fn} />);
+//   // console.log(screen.queryByRole('textbox'));
+//   fireEvent.focus(screen.queryByRole('textbox') as HTMLElement);
+//   expect(fn).toHaveBeenCalled();
+// });
