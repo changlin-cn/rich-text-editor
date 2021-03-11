@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "e2e":"node ./test/run-tests.js",
+    "e2e": "node ./test/run-tests.js",
     "test:e2e": "jest --config './jest.e2e.config.js'",
     "build": "rollup -c",
     "precommit": "npm run test && lint-staged",
